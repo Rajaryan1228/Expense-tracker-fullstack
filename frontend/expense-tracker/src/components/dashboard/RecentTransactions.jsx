@@ -17,12 +17,13 @@ const RecentTransactions = ({transactions, onSeeMore}) => {
             {transactions?.slice(0,5)?.map((item) => (
                 <TransactionInfoCard
                     key={item._id}
-                    title={item.title == 'expense' ? item.category : item.source}
-                    icon = {item.icon}
+                    title={item.type?.toLowerCase() === 'income' ? item.category : item.source}
+                    icon={item.icon}
                     date={moment(item.date).format('DD MM YYYY')}
                     amount={item.amount}
+                    type={item.type?.toLowerCase()}
                     hideDeletebtn
-                />  
+                />
             ))}
         </div>
     </div>

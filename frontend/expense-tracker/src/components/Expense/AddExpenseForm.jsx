@@ -9,6 +9,7 @@ const AddExpenseForm = ({onAddExpense}) => {
         amount: "",
         date: "",
         icon: "",
+        type: "expense"
     });
 
     const handleChange = (key,value) => setIncome({...income, [key]: value});

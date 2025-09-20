@@ -30,9 +30,11 @@ const registerUser = async (req, res) => {
       profileImageUrl,
     });
 
+    const safeUser = await User.findById(user._id).select('-password');
+
     res.status(201).json({
       _id: user._id,
-      user,
+      user: safeUser,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -54,9 +56,10 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    const safeUser = await User.findById(user._id).select('-password');
     res.status(200).json({
       _id: user._id,
-      user,
+      user: safeUser,
       token: generateToken(user._id),
     });
   } catch (error) {
